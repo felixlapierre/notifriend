@@ -3,6 +3,8 @@ package com.softbean.notifriend
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -39,9 +41,17 @@ class MainActivity : AppCompatActivity() {
 
     fun onActivate(view: View) {
         val builder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setSmallIcon(R.drawable.ic_small_nubb)
+            .setStyle(NotificationCompat.BigPictureStyle()
+                .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.samplenubb))
+                .bigLargeIcon(null)
+                .setBigContentTitle("Hi!")
+                .setSummaryText("I love you!")
+            )
             .setContentTitle("Your lad wants to talk to you!")
             .setContentText("He thinks you're doing great!")
+            .setSubText("a small friend")
+            .setLargeIcon((BitmapFactory.decodeResource(resources, R.drawable.smolnubb)))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         with(NotificationManagerCompat.from(this)) {
