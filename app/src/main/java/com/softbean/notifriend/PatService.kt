@@ -1,48 +1,49 @@
 package com.softbean.notifriend
 
 import android.app.IntentService
-import android.app.NotificationChannel
-import android.app.NotificationManager
+import android.app.Notification
 import android.app.PendingIntent
-import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.os.Build
-import android.os.Bundle
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import java.util.*
+import kotlin.concurrent.schedule
 
-class MainActivity : AppCompatActivity() {
+class PatService() : IntentService("PatService") {
+
+    class PatServiceProperties{
+        public val TAG = "PatService"
+        public val ACTION_PAT = "com.softbean.notifriend.action.pat"
+    }
+
     private val channelId = "NOTIFRIEND_CHANNEL_ID"
     private val notificationId = 176
+    private val properties = PatServiceProperties();
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        createNotificationChannel()
-    }
 
-    private fun createNotificationChannel() {
-        //API 26+ needs a Notification Channel
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = getString(R.string.channel_name)
-            val descriptionText = getString(R.string.channel_description)
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(channelId, name, importance).apply {
-                description = descriptionText
-            }
-            // Register the channel with the system
-            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
+    override fun onHandleIntent(intent: Intent?) {
+        Log.d(properties.TAG, " onHandleIntent()$intent")
+
+        if (intent!= null){
+            //if (properties.ACTION_PAT == intent.action)
+            handleActionPat()
         }
-
     }
 
+    private fun handleActionPat() {
+        Log.d(properties.TAG, "handlePat()")
 
-    fun onActivate(view: View) {
+        val notificationManagerCompat = NotificationManagerCompat.from(applicationContext)
+        notificationManagerCompat.notify(176, makePatNotification())
 
+        Timer("Patting", false).schedule(2500) {
+            deployBaseNotification()
+        }
+    }
+
+    private fun deployBaseNotification(){
         val patIntent = Intent(this, PatService::class.java);
         patIntent.action = PatService.PatServiceProperties().TAG
         var patPendingIntent = PendingIntent.getService(this, 0, patIntent, PendingIntent.FLAG_ONE_SHOT)
@@ -85,8 +86,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun makePatNotification(): Notification{
 
-    private fun createNubbNotification(){
+        val builder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.drawable.ic_small_nubb)
+            .setStyle(
+                NotificationCompat.BigPictureStyle()
+                    .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.nubbounce))
+                    .bigLargeIcon(null)
+                    .setBigContentTitle("I love pats!")
+                    .setSummaryText(null)
+            )
+            .setContentTitle("You pat nubb!")
+            .setContentText("UwU")
+            .setSubText("Nubb's space")
+            .setLargeIcon((BitmapFactory.decodeResource(resources, R.drawable.smolnubb)))
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setColor(6405212)
 
+        return builder.build()
     }
+
+
 }
