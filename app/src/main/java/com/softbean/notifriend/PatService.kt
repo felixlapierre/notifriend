@@ -15,7 +15,6 @@ class PatService() : IntentService("PatService") {
 
     class PatServiceProperties{
         public val TAG = "PatService"
-        public val ACTION_PAT = "com.softbean.notifriend.action.pat"
     }
 
     private val channelId = "NOTIFRIEND_CHANNEL_ID"
@@ -54,20 +53,10 @@ class PatService() : IntentService("PatService") {
             .build()
 
 
-        val snoozeIntent = Intent(this, SnoozeService::class.java)
-        snoozeIntent.action = SnoozeService.SnoozeServiceProperties().TAG
-        var snoozePendingIntent = PendingIntent.getActivity(this, 0, snoozeIntent, PendingIntent.FLAG_ONE_SHOT)
-        val snoozeAction = NotificationCompat.Action.Builder(
-            R.drawable.ic_small_nubb,
-            "Naptime",
-            snoozePendingIntent)
-            .build()
-
-
         val builder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.ic_small_nubb)
             .setStyle(NotificationCompat.BigPictureStyle()
-                .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.samplenubb))
+                .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.nr480))
                 .bigLargeIcon(null)
                 .setBigContentTitle("Hi!")
                 .setSummaryText("I love you!")
@@ -78,12 +67,13 @@ class PatService() : IntentService("PatService") {
             .setLargeIcon((BitmapFactory.decodeResource(resources, R.drawable.smolnubb)))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setColor(6405212)
-            .addAction(patAction).addAction(snoozeAction)
+            .addAction(patAction)
 
         with(NotificationManagerCompat.from(this)) {
             // notificationId is a unique int for each notification that you must define
             notify(notificationId, builder.build())
         }
+
     }
 
     private fun makePatNotification(): Notification{
@@ -92,9 +82,9 @@ class PatService() : IntentService("PatService") {
             .setSmallIcon(R.drawable.ic_small_nubb)
             .setStyle(
                 NotificationCompat.BigPictureStyle()
-                    .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.nubbounce))
+                    .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.nrbedtime))
                     .bigLargeIcon(null)
-                    .setBigContentTitle("I love pats!")
+                    .setBigContentTitle("I love pats!").setSummaryText(" ")
                     .setSummaryText(null)
             )
             .setContentTitle("You pat nubb!")

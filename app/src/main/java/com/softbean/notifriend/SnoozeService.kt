@@ -7,6 +7,8 @@ import android.icu.util.TimeUnit
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import java.util.*
+import kotlin.concurrent.schedule
 
 
 class SnoozeService : IntentService("SnoozeService") {
@@ -55,12 +57,12 @@ class SnoozeService : IntentService("SnoozeService") {
             val notificationManagerCompat =
                 NotificationManagerCompat.from(applicationContext)
             notificationManagerCompat.cancel(notificationId)
-            try {
-                Thread.sleep(2000)
-            } catch (ex: InterruptedException) {
-                Thread.currentThread().interrupt()
+
+            Timer("Patting", false).schedule(2500) {
+                notificationManagerCompat.notify(notificationId, notification)
             }
-            notificationManagerCompat.notify(notificationId, notification)
+
+
         }
 
     }
