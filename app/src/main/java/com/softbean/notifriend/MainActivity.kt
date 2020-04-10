@@ -1,8 +1,12 @@
 package com.softbean.notifriend
 
+import android.app.IntentService
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -30,23 +34,19 @@ class MainActivity : AppCompatActivity() {
                 description = descriptionText
             }
             // Register the channel with the system
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
 
     }
 
-    fun onActivate(view: View) {
-        val builder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle("Your lad wants to talk to you!")
-            .setContentText("He thinks you're doing great!")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
-        with(NotificationManagerCompat.from(this)) {
-            // notificationId is a unique int for each notification that you must define
-            notify(notificationId, builder.build())
-        }
+    fun onActivate(view: View) {
+        IntroNotification(this).send()
+    }
+
+
+    private fun createNubbNotification(){
+
     }
 }
