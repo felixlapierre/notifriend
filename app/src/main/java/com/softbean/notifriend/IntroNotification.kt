@@ -20,5 +20,6 @@ class IntroNotification constructor(context: Context) : Notification(context) {
 
         addAction(Action(context, PatService::class.java, "Pat Nubb").build())
         addAction(Action(context, SnoozeService::class.java, "Naptime").build())
+        addAction(Action(context, FetchService::class.java, "Fetch").build())
     }
 }

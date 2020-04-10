@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service android:name=".PatService"/>
-        <service android:name=".SnoozeService"/>\
+        <service android:name=".SnoozeService"/>
+        <service android:name=".FetchService"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
