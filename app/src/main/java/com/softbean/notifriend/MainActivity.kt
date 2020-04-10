@@ -42,47 +42,7 @@ class MainActivity : AppCompatActivity() {
 
 
     fun onActivate(view: View) {
-
-        val patIntent = Intent(this, PatService::class.java);
-        patIntent.action = PatService.PatServiceProperties().TAG
-        var patPendingIntent = PendingIntent.getService(this, 0, patIntent, PendingIntent.FLAG_ONE_SHOT)
-        val patAction = NotificationCompat.Action.Builder(
-            R.drawable.ic_small_nubb,
-            "Pat Nubb",
-            patPendingIntent)
-            .build()
-
-
-        val snoozeIntent = Intent(this, SnoozeService::class.java)
-        snoozeIntent.action = SnoozeService.SnoozeServiceProperties().TAG
-        var snoozePendingIntent = PendingIntent.getActivity(this, 0, snoozeIntent, PendingIntent.FLAG_ONE_SHOT)
-        val snoozeAction = NotificationCompat.Action.Builder(
-            R.drawable.ic_small_nubb,
-            "Naptime",
-            snoozePendingIntent)
-            .build()
-
-
-        val builder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.ic_small_nubb)
-            .setStyle(NotificationCompat.BigPictureStyle()
-                .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.samplenubb))
-                .bigLargeIcon(null)
-                .setBigContentTitle("Hi!")
-                .setSummaryText("I love you!")
-            )
-            .setContentTitle("Your lad wants to talk to you!")
-            .setContentText("He thinks you're doing great!")
-            .setSubText("Nubb's space")
-            .setLargeIcon((BitmapFactory.decodeResource(resources, R.drawable.smolnubb)))
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setColor(6405212)
-            .addAction(patAction).addAction(snoozeAction)
-
-        with(NotificationManagerCompat.from(this)) {
-            // notificationId is a unique int for each notification that you must define
-            notify(notificationId, builder.build())
-        }
+        IntroNotification(this).send()
     }
 
 
