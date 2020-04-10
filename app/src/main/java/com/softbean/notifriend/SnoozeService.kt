@@ -2,12 +2,8 @@ package com.softbean.notifriend
 
 import android.app.IntentService
 import android.content.Intent
-import android.graphics.BitmapFactory
-import android.icu.util.TimeUnit
 import android.util.Log
-import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-
 
 class SnoozeService : IntentService("SnoozeService") {
     companion object {
