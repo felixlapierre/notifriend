@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service android:name=".IntroService"/>
         <service android:name=".PatService"/>
         <service android:name=".SnoozeService"/>
         <service android:name=".FetchService"/>

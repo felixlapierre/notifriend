@@ -1,9 +1,6 @@
 package com.softbean.notifriend
 
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
-import androidx.core.app.NotificationCompat
 
 class IntroNotification constructor(context: Context) : Notification(context) {
     init {
@@ -18,8 +15,8 @@ class IntroNotification constructor(context: Context) : Notification(context) {
         bigStyle.bigPictureDrawableId = R.drawable.samplenubb
         style = bigStyle
 
-        addAction(Action(context, PatService::class.java, "Pat Nubb").build())
-        addAction(Action(context, SnoozeService::class.java, "Naptime").build())
-        addAction(Action(context, FetchService::class.java, "Fetch").build())
+        addAction(PendingService(context, PatService::class.java, "Pat Nubb").asAction())
+        addAction(PendingService(context, SnoozeService::class.java, "Naptime").asAction())
+        addAction(PendingService(context, FetchService::class.java, "Fetch").asAction())
     }
 }
