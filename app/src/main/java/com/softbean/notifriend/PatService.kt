@@ -1,18 +1,12 @@
 package com.softbean.notifriend
 
 import android.app.IntentService
-import android.app.Notification
-import android.app.PendingIntent
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.util.Log
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import java.util.*
 import kotlin.concurrent.schedule
 
 class PatService() : IntentService("PatService") {
-
     companion object {
         val TAG = "PatService"
     }
