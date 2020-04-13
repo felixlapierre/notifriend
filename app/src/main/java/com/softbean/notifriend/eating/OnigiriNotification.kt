@@ -3,6 +3,7 @@ package com.softbean.notifriend.eating
 import android.content.Context
 import com.softbean.notifriend.BigPictureStyle
 import com.softbean.notifriend.Notification
+import com.softbean.notifriend.PendingService
 import com.softbean.notifriend.R
 
 class OnigiriNotification constructor(context: Context, drawableId: Int) : Notification(context) {
@@ -17,5 +18,7 @@ class OnigiriNotification constructor(context: Context, drawableId: Int) : Notif
         bigStyle.summaryText = "I love it!!"
         bigStyle.bigPictureDrawableId = drawableId
         style = bigStyle
+
+        addAction(PendingService(context, OnigiriService::class.java, "Another").asAction())
     }
 }

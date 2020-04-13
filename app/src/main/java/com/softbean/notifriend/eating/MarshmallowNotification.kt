@@ -15,5 +15,7 @@ class MarshmallowNotification constructor(context: Context, drawableId: Int): No
         bigStyle.summaryText = "Looks tasty..."
         bigStyle.bigPictureDrawableId = drawableId
         style = bigStyle
+
+        addAction(PendingService(context, MarshmallowService::class.java, "Another").asAction())
     }
 }

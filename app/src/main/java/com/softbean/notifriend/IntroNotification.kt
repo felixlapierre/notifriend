@@ -17,8 +17,8 @@ class IntroNotification constructor(context: Context) : Notification(context) {
         bigStyle.bigPictureDrawableId = R.drawable.samplenubb
         style = bigStyle
 
-        addAction(PendingService(context, PlayingService::class.java, "Play with Nubb").asAction())
-        addAction(PendingService(context, SnoozeService::class.java, "Naptime").asAction())
-        addAction(PendingService(context, HungryService::class.java, "Eat").asAction())
+        addAction(PendingService(context, PlayingService::class.java, "Play").asAction())
+        addAction(PendingService(context, HungryService::class.java, "Feed").asAction())
+        addAction(PendingService(context, SnoozeService::class.java, "Snooze").asAction())
     }
 }
