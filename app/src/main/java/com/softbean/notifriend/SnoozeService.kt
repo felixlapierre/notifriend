@@ -1,36 +1,20 @@
 package com.softbean.notifriend
 
-import android.app.IntentService
 import android.content.Intent
-import android.util.Log
-import androidx.core.app.NotificationManagerCompat
 
-class SnoozeService : IntentService("SnoozeService") {
-    companion object {
-        val TAG = "SnoozeService"
-    }
-
-    override fun onHandleIntent(intent: Intent?) {
-        Log.i(TAG, "onHandleIntent()$intent")
-
-        if (intent != null) {
-            handleActionSnooze()
+class SnoozeService : NotifriendService("SnoozeService") {
+    override fun doService(intent: Intent) {
+        while(amCurrentService()) {
+            for (i in 0..3) {
+                val id = R.drawable::class.java.getField("snooze$i").getInt(0)
+                SnoozeNotification(this, id).send(name)
+                Utils.sleep(1000)
+            }
+            for (i in 0..3) {
+                val id = R.drawable::class.java.getField("snooze$i").getInt(0)
+                SnoozeNotification(this, id).send(name)
+                Utils.sleep(1000)
+            }
         }
-
     }
-
-    private fun handleActionSnooze() {
-        Log.d(TAG, "handleActionSnooze()")
-
-        val notificationManagerCompat =
-            NotificationManagerCompat.from(applicationContext)
-        notificationManagerCompat.cancel(Notification.notificationId)
-        try {
-            Thread.sleep(2000)
-        } catch (ex: InterruptedException) {
-            Thread.currentThread().interrupt()
-        }
-        SnoozeNotification(this).send()
-    }
-
 }
