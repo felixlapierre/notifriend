@@ -16,6 +16,7 @@
         <service android:name=".eating.MarshmallowService"/>
         <service android:name=".eating.HungryService"/>
         <service android:name=".eating.OnigiriService"/>
+        <service android:name=".playing.PlayingService"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
