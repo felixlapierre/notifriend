@@ -17,7 +17,7 @@ class HungryNotification constructor(context: Context, drawableId: Int) : Notifi
         style = bigStyle
 
         addAction(PendingService(context, MarshmallowService::class.java, "Marshmallow").asAction())
-        addAction(PendingService(context, FetchService::class.java, "Fetch").asAction())
+        addAction(PendingService(context, OnigiriService::class.java, "Onigiri").asAction())
         addAction(PendingService(context, SnoozeService::class.java, "Snooze").asAction())
     }
 }

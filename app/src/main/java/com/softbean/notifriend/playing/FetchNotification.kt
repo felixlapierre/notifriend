@@ -1,6 +1,9 @@
-package com.softbean.notifriend
+package com.softbean.notifriend.playing
 
 import android.content.Context
+import com.softbean.notifriend.BigPictureStyle
+import com.softbean.notifriend.Notification
+import com.softbean.notifriend.R
 
 class FetchNotification constructor(context: Context, drawableId: Int) : Notification(context) {
     init {

@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service android:name=".IntroService"/>
-        <service android:name=".PatService"/>
+        <service android:name=".playing.PatService"/>
         <service android:name=".SnoozeService"/>
-        <service android:name=".FetchService"/>
+        <service android:name=".playing.FetchService"/>
         <service android:name=".eating.MarshmallowService"/>
         <service android:name=".eating.HungryService"/>
         <service android:name=".eating.OnigiriService"/>
         <service android:name=".playing.PlayingService"/>
+        <receiver
+            android:name="com.softbean.notifriend.NotificationDismissedReceiver"
+            android:exported="false"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

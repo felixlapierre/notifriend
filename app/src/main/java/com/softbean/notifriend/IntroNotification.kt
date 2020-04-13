@@ -1,6 +1,8 @@
 package com.softbean.notifriend
 
 import android.content.Context
+import com.softbean.notifriend.eating.HungryService
+import com.softbean.notifriend.playing.PlayingService
 
 class IntroNotification constructor(context: Context) : Notification(context) {
     init {
@@ -15,8 +17,8 @@ class IntroNotification constructor(context: Context) : Notification(context) {
         bigStyle.bigPictureDrawableId = R.drawable.samplenubb
         style = bigStyle
 
-        addAction(PendingService(context, PatService::class.java, "Pat Nubb").asAction())
+        addAction(PendingService(context, PlayingService::class.java, "Play with Nubb").asAction())
         addAction(PendingService(context, SnoozeService::class.java, "Naptime").asAction())
-        addAction(PendingService(context, FetchService::class.java, "Fetch").asAction())
+        addAction(PendingService(context, HungryService::class.java, "Eat").asAction())
     }
 }

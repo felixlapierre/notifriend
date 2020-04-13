@@ -1,9 +1,7 @@
 package com.softbean.notifriend.playing
 
 import android.content.Context
-import com.softbean.notifriend.BigPictureStyle
-import com.softbean.notifriend.Notification
-import com.softbean.notifriend.R
+import com.softbean.notifriend.*
 
 class PlayingNotification constructor(context: Context, drawableId: Int) : Notification(context) {
     init {
@@ -16,5 +14,9 @@ class PlayingNotification constructor(context: Context, drawableId: Int) : Notif
         bigStyle.bigContentTitle = "Play with me!!"
         bigStyle.bigPictureDrawableId = drawableId
         style = bigStyle
+
+        addAction(PendingService(context, FetchService::class.java, "Fetch").asAction())
+        addAction(PendingService(context, PatService::class.java, "Pats").asAction())
+        addAction(PendingService(context, SnoozeService::class.java, "Snooze").asAction())
     }
 }

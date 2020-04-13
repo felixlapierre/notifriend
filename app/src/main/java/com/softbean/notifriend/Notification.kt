@@ -1,6 +1,8 @@
 package com.softbean.notifriend
 
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -23,6 +25,7 @@ open class Notification constructor(private val context: Context) {
             .setSmallIcon(R.drawable.ic_small_nubb)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setColor(color)
+            .setDeleteIntent(createOnDismissedIntent())
     }
 
     fun addAction(action: NotificationCompat.Action) {
@@ -40,5 +43,19 @@ open class Notification constructor(private val context: Context) {
             // notificationId is a unique int for each notification that you must define
             notify(notificationId, builder.build())
         }
+    }
+
+    /**
+     * Sends the notification only if the passed service is the service that is currently active
+     */
+    fun send(serviceName: String) {
+        if(NotifriendService.currentService == serviceName)
+            send()
+    }
+
+    private fun createOnDismissedIntent(): PendingIntent {
+        val intent = Intent(context, NotificationDismissedReceiver::class.java)
+        intent.putExtra("com.softbean.notifriend.notificationId", notificationId)
+        return PendingIntent.getBroadcast(context.applicationContext, notificationId, intent, 0)
     }
 }
