@@ -6,19 +6,19 @@ import com.softbean.notifriend.playing.PlayingService
 
 class IntroNotification constructor(context: Context) : Notification(context) {
     init {
-        title = "Your lad wants to talk to you!"
-        text = "He thinks you're doing great!"
+        title = "Notifriend has been started."
+        text = "Thank you for using notifriend!"
         subtext = "Nubb's space"
         largeIconId = R.drawable.smolnubb
 
         val bigStyle = BigPictureStyle(context)
-        bigStyle.bigContentTitle = "Hi!"
-        bigStyle.summaryText = "I love you!"
+        bigStyle.bigContentTitle = "Thank you for using Notifriend!"
+        bigStyle.summaryText = "Nubb will let you know when he wants attention!"
         bigStyle.bigPictureDrawableId = R.drawable.samplenubb
         style = bigStyle
 
         addAction(PendingService(context, PlayingService::class.java, "Play").asAction())
         addAction(PendingService(context, HungryService::class.java, "Feed").asAction())
-        addAction(PendingService(context, SnoozeService::class.java, "Snooze").asAction())
+        addAction(PendingService(context, SnoozeService::class.java, "Sleep").asAction())
     }
 }

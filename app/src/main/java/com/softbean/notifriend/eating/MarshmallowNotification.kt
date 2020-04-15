@@ -17,5 +17,6 @@ class MarshmallowNotification constructor(context: Context, drawableId: Int): No
         style = bigStyle
 
         addAction(PendingService(context, MarshmallowService::class.java, "Another").asAction())
+        addAction(PendingService(context, HungryService::class.java, "Back").asAction())
     }
 }
