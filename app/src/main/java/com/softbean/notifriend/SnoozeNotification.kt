@@ -13,5 +13,7 @@ class SnoozeNotification constructor(context: Context, drawableId: Int): Notific
         bigStyle.bigContentTitle = "Zzzzzzzzzzzzzzzzzzzz"
         bigStyle.bigPictureDrawableId = drawableId
         style = bigStyle
+
+        addAction(PendingService(context, IntroService::class.java, "Wake up").asAction())
     }
 }
