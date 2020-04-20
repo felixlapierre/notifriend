@@ -5,7 +5,7 @@ import com.softbean.notifriend.BigPictureStyle
 import com.softbean.notifriend.Notification
 import com.softbean.notifriend.R
 
-class PatNotification constructor(context: Context) : Notification(context) {
+class PatNotification constructor(context: Context,  drawableId: Int) : Notification(context) {
     init {
         title = "You pat nubb!"
         text = "UwU"
@@ -14,8 +14,7 @@ class PatNotification constructor(context: Context) : Notification(context) {
 
         val bigStyle = BigPictureStyle(context)
         bigStyle.bigContentTitle = "I love pats!"
-        bigStyle.bigPictureDrawableId =
-            R.drawable.nubbounce
+        bigStyle.bigPictureDrawableId = drawableId
         style = bigStyle
     }
 }
