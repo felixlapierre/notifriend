@@ -1,12 +1,16 @@
 package com.softbean.notifriend
 
+import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.softbean.notifriend.eating.HungryService
+import com.softbean.notifriend.playing.PlayingService
 
 class MainActivity : AppCompatActivity() {
     private val channelId = "NOTIFRIEND_CHANNEL_ID"
@@ -15,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         createNotificationChannel()
+        createRepeatingNotifications()
     }
 
     private fun createNotificationChannel() {
@@ -30,16 +35,31 @@ class MainActivity : AppCompatActivity() {
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
-
     }
 
-
     fun onActivate(view: View) {
+        createRepeatingNotifications()
         IntroNotification(this).send()
     }
 
+    private fun createRepeatingNotifications() {
+        createHungry().repeatDailyAt(8)
+        createHungry().repeatDailyAt(12)
+        createHungry().repeatDailyAt(18)
+        createSleepy().repeatDailyAt(23)
 
-    private fun createNubbNotification(){
+        createPlay().delay(10 * 60 * 1000)
+    }
 
+    private fun createHungry(): PendingService {
+        return PendingService(this, HungryService::class.java, "Hungry")
+    }
+
+    private fun createSleepy(): PendingService {
+        return PendingService(this, SnoozeService::class.java, "Snooze")
+    }
+
+    private fun createPlay(): PendingService {
+        return PendingService(this, PlayingService::class.java, "Play")
     }
 }

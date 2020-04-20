@@ -1,6 +1,7 @@
 package com.softbean.notifriend.eating
 
 import android.content.Context
+import androidx.core.app.NotificationCompat
 import com.softbean.notifriend.BigPictureStyle
 import com.softbean.notifriend.Notification
 import com.softbean.notifriend.PendingService
@@ -20,5 +21,6 @@ class OnigiriNotification constructor(context: Context, drawableId: Int) : Notif
         style = bigStyle
 
         addAction(PendingService(context, OnigiriService::class.java, "Another").asAction())
+        addAction(PendingService(context, HungryService::class.java, "Back").asAction())
     }
 }
