@@ -24,6 +24,7 @@ open class Notification constructor(private val context: Context) {
         builder = NotificationCompat.Builder(context, channelId)
             .setSmallIcon(R.drawable.ic_small_nubb)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setOnlyAlertOnce(true)
             .setColor(color)
             .setDeleteIntent(createOnDismissedIntent())
     }
