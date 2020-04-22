@@ -10,7 +10,5 @@ class PatService : NotifriendService("PatService") {
             PatNotification(this, id).send(name)
             Utils.sleep(100)
         }
-
-        IntroNotification(this).send()
     }
 }
