@@ -1,9 +1,7 @@
 package com.softbean.notifriend.playing
 
 import android.content.Context
-import com.softbean.notifriend.BigPictureStyle
-import com.softbean.notifriend.Notification
-import com.softbean.notifriend.R
+import com.softbean.notifriend.*
 
 class FetchNotification constructor(context: Context, drawableId: Int) : Notification(context) {
     init {
@@ -16,5 +14,10 @@ class FetchNotification constructor(context: Context, drawableId: Int) : Notific
         bigStyle.bigContentTitle = "Nubb is fetching the ball..."
         bigStyle.bigPictureDrawableId = drawableId
         style = bigStyle
+
+
+        addAction(PendingService(context, PlayingService::class.java, "Back").asAction())
+        addAction(PendingService(context, IntroService::class.java, "Home").asAction())
+
     }
 }

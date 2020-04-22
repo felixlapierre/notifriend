@@ -3,17 +3,20 @@ package com.softbean.notifriend
 import android.content.Context
 import com.softbean.notifriend.eating.HungryService
 import com.softbean.notifriend.playing.PlayingService
+import java.lang.Math.random
+import java.lang.Math.toIntExact
+import kotlin.math.ceil
 
 class IntroNotification constructor(context: Context) : Notification(context) {
     init {
-        title = "Notifriend has been started."
-        text = "Thank you for using notifriend!"
+        title = "Stop by when you have time!"
+        text = "Nubb is hanging out"
         subtext = "Nubb's space"
         largeIconId = R.drawable.smolnubb
 
         val bigStyle = BigPictureStyle(context)
-        bigStyle.bigContentTitle = "Thank you for using Notifriend!"
-        bigStyle.summaryText = "Nubb will let you know when he wants attention!"
+        bigStyle.bigContentTitle = "Hi!!"
+        bigStyle.summaryText = "I missed you!"
         bigStyle.bigPictureDrawableId = R.drawable.samplenubb
         style = bigStyle
 
