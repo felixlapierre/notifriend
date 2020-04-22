@@ -8,7 +8,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 
 open class Notification constructor(private val context: Context) {
-    private val builder: NotificationCompat.Builder
+    protected val builder: NotificationCompat.Builder
     var title: String? = null
     var text: String? = null
     var subtext: String? = null
@@ -27,6 +27,7 @@ open class Notification constructor(private val context: Context) {
             .setOnlyAlertOnce(true)
             .setColor(color)
             .setDeleteIntent(createOnDismissedIntent())
+            .setOngoing(true)
     }
 
     fun addAction(action: NotificationCompat.Action) {
@@ -59,4 +60,5 @@ open class Notification constructor(private val context: Context) {
         intent.putExtra("com.softbean.notifriend.notificationId", notificationId)
         return PendingIntent.getBroadcast(context.applicationContext, notificationId, intent, 0)
     }
+
 }
