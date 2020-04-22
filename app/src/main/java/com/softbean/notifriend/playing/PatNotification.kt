@@ -14,5 +14,9 @@ class PatNotification constructor(context: Context,  drawableId: Int) : Notifica
         bigStyle.bigContentTitle = "I love pats!"
         bigStyle.bigPictureDrawableId = drawableId
         style = bigStyle
+
+
+        addAction(PendingService(context, PlayingService::class.java, "Play something else!").asAction())
+        addAction(PendingService(context, IntroService::class.java, "Done Playing").asAction())
     }
 }

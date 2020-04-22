@@ -18,5 +18,6 @@ class MarshmallowNotification constructor(context: Context, drawableId: Int): No
 
         addAction(PendingService(context, MarshmallowService::class.java, "Another").asAction())
         addAction(PendingService(context, HungryService::class.java, "Back").asAction())
+        addAction(PendingService(context, IntroService::class.java, "Done Eating").asAction())
     }
 }

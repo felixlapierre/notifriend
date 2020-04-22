@@ -15,9 +15,8 @@ class FetchNotification constructor(context: Context, drawableId: Int) : Notific
         bigStyle.bigPictureDrawableId = drawableId
         style = bigStyle
 
-
-        addAction(PendingService(context, PlayingService::class.java, "Back").asAction())
-        addAction(PendingService(context, IntroService::class.java, "Home").asAction())
+        addAction(PendingService(context, PlayingService::class.java, "Play something else!").asAction())
+        addAction(PendingService(context, IntroService::class.java, "Done Playing").asAction())
 
     }
 }
