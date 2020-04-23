@@ -3,12 +3,9 @@ package com.softbean.notifriend.eating
 import android.content.Context
 import com.softbean.notifriend.*
 
-class MarshmallowNotification constructor(context: Context, drawableId: Int): Notification(context) {
+class MarshmallowNotification constructor(context: Context, drawableId: Int): FoodNotification(context) {
     init {
-        title = "Nubb is eating"
-        text = "You gave him a marshmallow"
-        subtext = "Nubb's space"
-        largeIconId = R.drawable.smolnubb
+          text = "You gave him a marshmallow"
 
         val bigStyle = BigPictureStyle(context)
         bigStyle.bigContentTitle = "A marshmallow?"
@@ -17,7 +14,6 @@ class MarshmallowNotification constructor(context: Context, drawableId: Int): No
         style = bigStyle
 
         addAction(PendingService(context, MarshmallowService::class.java, "Another").asAction())
-        addAction(PendingService(context, HungryService::class.java, "Back").asAction())
-        addAction(PendingService(context, IntroService::class.java, "Done Eating").asAction())
+        this.addFoodActions(context)
     }
 }

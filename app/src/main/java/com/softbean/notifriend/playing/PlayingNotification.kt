@@ -7,7 +7,6 @@ class PlayingNotification constructor(context: Context, drawableId: Int) : Notif
     init {
         title = "Nubb wants to play!"
         text = "He's getting excited..."
-        subtext = "Nubb's space"
         largeIconId = R.drawable.smolnubb
 
         val bigStyle = BigPictureStyle(context)
@@ -17,7 +16,7 @@ class PlayingNotification constructor(context: Context, drawableId: Int) : Notif
 
         addAction(PendingService(context, FetchService::class.java, "Fetch").asAction())
         addAction(PendingService(context, PatService::class.java, "Pats").asAction())
-        addAction(PendingService(context, IntroService::class.java, "Home").asAction())
+        addAction(PendingService(context, IntroService::class.java, "Done Playing").asAction())
         addAction(PendingService(context, SnoozeService::class.java, "Snooze").asAction())
     }
 }

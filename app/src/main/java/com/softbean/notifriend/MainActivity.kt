@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     fun onActivate(view: View) {
 
-        view?.isActivated = true
+        view.isActivated = true
         this.findViewById<TextView>(R.id.buttonText).text = "Nubb is waiting!"
         this.findViewById<TextView>(R.id.buttonText).textSize = 35F
         createRepeatingNotifications()

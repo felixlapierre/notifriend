@@ -11,7 +11,6 @@ open class Notification constructor(private val context: Context) {
     protected val builder: NotificationCompat.Builder
     var title: String? = null
     var text: String? = null
-    var subtext: String? = null
     var style: NotificationStyle? = null
     var largeIconId: Int = 0
 
@@ -28,6 +27,8 @@ open class Notification constructor(private val context: Context) {
             .setColor(color)
             .setDeleteIntent(createOnDismissedIntent())
             .setOngoing(true)
+            .setSubText("Nubb's space")
+            .setLargeIcon((BitmapFactory.decodeResource(context.resources, R.drawable.smolnubb)))
     }
 
     fun addAction(action: NotificationCompat.Action) {
@@ -37,9 +38,10 @@ open class Notification constructor(private val context: Context) {
     fun send() {
         builder.setContentTitle(title)
         builder.setContentText(text)
-        builder.setSubText(subtext)
         builder.setStyle(style?.getStyle())
-        builder.setLargeIcon((BitmapFactory.decodeResource(context.resources, largeIconId)))
+
+        //TODO: Set individual thumbnails for each type of activity
+       // builder.setLargeIcon((BitmapFactory.decodeResource(context.resources, largeIconId)))
 
         with(NotificationManagerCompat.from(context)) {
             // notificationId is a unique int for each notification that you must define

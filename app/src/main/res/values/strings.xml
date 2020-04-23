@@ -3,4 +3,5 @@
     <string name="channel_name">notifriend</string>
     <string name="channel_description">Contains notifications for app Notifriend</string>
     <string name="instructions">To dismiss your notifriend, snooze him and then you can clear the notification</string>
+    <string name="subtext">Nubb\'s space</string>
 </resources>

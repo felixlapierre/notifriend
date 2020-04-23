@@ -3,11 +3,9 @@ package com.softbean.notifriend.eating
 import android.content.Context
 import com.softbean.notifriend.*
 
-class OnigiriNotification constructor(context: Context, drawableId: Int) : Notification(context) {
+class OnigiriNotification constructor(context: Context, drawableId: Int) : FoodNotification(context) {
     init {
-        title = "Nubb is eating"
         text = "You gave him onigiri"
-        subtext = "Nubb's space"
         largeIconId = R.drawable.smolnubb
 
         val bigStyle = BigPictureStyle(context)
@@ -17,7 +15,6 @@ class OnigiriNotification constructor(context: Context, drawableId: Int) : Notif
         style = bigStyle
 
         addAction(PendingService(context, OnigiriService::class.java, "Another").asAction())
-        addAction(PendingService(context, HungryService::class.java, "Back").asAction())
-        addAction(PendingService(context, IntroService::class.java, "Done Eating").asAction())
+        this.addFoodActions(context)
     }
 }
