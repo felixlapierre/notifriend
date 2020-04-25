@@ -1,13 +1,12 @@
 package com.softbean.notifriend
 
-import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
-import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.softbean.notifriend.eating.HungryService
 import com.softbean.notifriend.playing.PlayingService
@@ -38,6 +37,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onActivate(view: View) {
+
+        view.isActivated = true
+        this.findViewById<TextView>(R.id.buttonText).text = "Nubb is waiting!"
+        this.findViewById<TextView>(R.id.buttonText).textSize = 35F
         createRepeatingNotifications()
         IntroNotification(this).send()
     }

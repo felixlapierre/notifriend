@@ -4,9 +4,9 @@ import android.content.Context
 
 class SnoozeNotification constructor(context: Context, drawableId: Int): Notification(context) {
     init {
+        builder.setOngoing(false)
         title = "Nubb is taking a nap."
         text = "He'll be back later"
-        subtext = "Nubb's space"
         largeIconId = R.drawable.smolnubb
 
         val bigStyle = BigPictureStyle(context)

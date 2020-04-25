@@ -7,7 +7,6 @@ class HungryNotification constructor(context: Context, drawableId: Int) : Notifi
     init {
         title = "Nubb is hungry..."
         text = "He wants something to eat!"
-        subtext = "Nubb's space"
         largeIconId = R.drawable.smolnubb
 
         val bigStyle = BigPictureStyle(context)
@@ -18,7 +17,7 @@ class HungryNotification constructor(context: Context, drawableId: Int) : Notifi
 
         addAction(PendingService(context, MarshmallowService::class.java, "Marshmallow").asAction())
         addAction(PendingService(context, OnigiriService::class.java, "Onigiri").asAction())
-        addAction(PendingService(context, IntroService::class.java, "Home").asAction())
+        addAction(PendingService(context, IntroService::class.java, "Done Eating").asAction())
         addAction(PendingService(context, SnoozeService::class.java, "Snooze").asAction())
     }
 }

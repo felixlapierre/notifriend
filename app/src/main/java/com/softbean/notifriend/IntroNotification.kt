@@ -11,13 +11,12 @@ class IntroNotification constructor(context: Context) : Notification(context) {
     init {
         title = "Stop by when you have time!"
         text = "Nubb is hanging out"
-        subtext = "Nubb's space"
         largeIconId = R.drawable.smolnubb
 
         val bigStyle = BigPictureStyle(context)
         bigStyle.bigContentTitle = "Hi!!"
         bigStyle.summaryText = "I missed you!"
-        bigStyle.bigPictureDrawableId = R.drawable.samplenubb
+        bigStyle.bigPictureDrawableId = R.drawable.nubbroom
         style = bigStyle
 
         addAction(PendingService(context, PlayingService::class.java, "Play").asAction())
